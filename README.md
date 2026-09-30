@@ -1,16 +1,22 @@
 # Secure Password Vault
 
-A modern, security-focused credential management system built with Python, FastAPI, SQLAlchemy, Argon2, and authenticated encrypted vault storage.
+A security-focused **Python password manager and credential vault** built with **FastAPI, SQLAlchemy, Argon2, AES-256-GCM, PBKDF2-HMAC-SHA256, and SQLite**.
 
-The project provides a REST API for securely managing credentials, password security analysis, encrypted vault export/import, session-based authentication, audit logging, and controlled password retrieval.
+The project provides a local-first REST API for securely managing credentials, analyzing password security, generating strong passwords, protecting sensitive vault data with authenticated encryption, performing encrypted vault export/import, managing authenticated sessions, and recording security audit events.
 
-> **Portfolio project:** This repository demonstrates practical application security, API engineering, cryptographic data protection, authentication, database design, automated testing, and operational verification.
+> **Portfolio project:** This repository demonstrates practical **cybersecurity, application security, cryptography, API engineering, authentication, database design, secure data handling, automated testing, and operational verification**.
+
+[![Python](https://img.shields.io/badge/Python-3.11%2B-blue?logo=python)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-REST%20API-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![SQLite](https://img.shields.io/badge/Database-SQLite-003B57?logo=sqlite)](https://www.sqlite.org/)
+[![Security](https://img.shields.io/badge/Focus-Cybersecurity-red)](#security-model)
+[![License](https://img.shields.io/badge/License-MIT-green)](#license)
 
 ---
 
 ## Overview
 
-Secure Password Vault is designed as a local-first credential management service that protects stored credentials while exposing a structured REST API for authorized operations.
+Secure Password Vault is designed as a local-first **password management and credential security service** that protects stored credentials while exposing a structured REST API for authorized operations.
 
 The application separates authentication, API routing, database access, cryptographic operations, password-security analysis, session management, and import/export functionality into dedicated modules.
 
@@ -19,7 +25,8 @@ The vault supports:
 * Master-password initialization and authentication
 * Session-based access control
 * Encrypted credential storage
-* Credential creation, retrieval, update, deletion, search, categories, and favorites
+* Credential creation, retrieval, update, deletion, and search
+* Credential categories and favorites
 * Controlled password reveal
 * Password-strength analysis
 * Secure password generation
@@ -74,13 +81,13 @@ The security API provides:
 * Sequential-pattern detection
 * Security feedback
 
-The application can distinguish weak passwords from stronger high-entropy passwords and provide actionable feedback.
+The application can distinguish weaker passwords from stronger high-entropy passwords and provide security feedback.
 
 ### 🔒 Encrypted Vault Storage
 
 The vault uses authenticated encryption for protected credential data.
 
-The export/import mechanism uses:
+The encrypted transfer mechanism uses:
 
 * **AES-256-GCM** for authenticated encryption
 * **PBKDF2-HMAC-SHA256** for key derivation
@@ -137,23 +144,23 @@ The API is organized into dedicated functional routers for authentication, crede
 
 ## Technology Stack
 
-| Technology         | Purpose                       |
-| ------------------ | ----------------------------- |
-| Python 3.11+       | Application development       |
-| FastAPI            | REST API framework            |
-| Uvicorn            | ASGI application server       |
-| SQLAlchemy         | Database ORM                  |
-| SQLite             | Local persistent storage      |
-| Pydantic           | Request/response validation   |
-| Pydantic Settings  | Application configuration     |
-| Cryptography       | Authenticated encryption      |
-| AES-256-GCM        | Protected vault data          |
-| PBKDF2-HMAC-SHA256 | Key derivation                |
-| Argon2             | Master-password hashing       |
-| Pytest             | Automated testing             |
-| HTTPX              | API testing                   |
-| pytest-cov         | Test coverage                 |
-| Swagger/OpenAPI    | Interactive API documentation |
+| Technology             | Purpose                       |
+| ---------------------- | ----------------------------- |
+| **Python 3.11+**       | Application development       |
+| **FastAPI**            | REST API framework            |
+| **Uvicorn**            | ASGI application server       |
+| **SQLAlchemy**         | Database ORM                  |
+| **SQLite**             | Local persistent storage      |
+| **Pydantic**           | Request/response validation   |
+| **Pydantic Settings**  | Application configuration     |
+| **Cryptography**       | Cryptographic operations      |
+| **AES-256-GCM**        | Authenticated encryption      |
+| **PBKDF2-HMAC-SHA256** | Key derivation                |
+| **Argon2**             | Master-password hashing       |
+| **Pytest**             | Automated testing             |
+| **HTTPX**              | API testing                   |
+| **pytest-cov**         | Test coverage                 |
+| **Swagger/OpenAPI**    | Interactive API documentation |
 
 ---
 
@@ -214,7 +221,10 @@ secure-password-vault/
 │   │   ├── password-reveal.png
 │   │   ├── swagger-api.png
 │   │   └── unauthorized-access.png
+│   │
 │   └── videos/
+│       ├── vault-api-overview.mp4
+│       └── vault-security-workflow.mp4
 │
 ├── src/
 │   └── password_vault/
@@ -349,7 +359,7 @@ git clone https://github.com/bwachira649/secure-password-vault.git
 cd secure-password-vault
 ```
 
-Create a virtual environment:
+Create a virtual environment.
 
 ### Linux / macOS
 
@@ -468,7 +478,7 @@ http://127.0.0.1:8000/openapi.json
 
 ## Basic API Workflow
 
-### 1. Check application health
+### 1. Check Application Health
 
 ```bash
 curl http://127.0.0.1:8000/health
@@ -484,11 +494,11 @@ Expected response:
 }
 ```
 
-### 2. Initialize the vault
+### 2. Initialize the Vault
 
 Use the authentication initialization endpoint to establish the master password.
 
-### 3. Log in
+### 3. Log In
 
 Authenticate through:
 
@@ -498,11 +508,11 @@ POST /api/v1/auth/login
 
 The API establishes an authenticated vault session.
 
-### 4. Manage credentials
+### 4. Manage Credentials
 
 Authorized clients can create, list, update, search, and delete credentials.
 
-### 5. Lock the vault
+### 5. Lock the Vault
 
 Use:
 
@@ -739,6 +749,26 @@ The evidence demonstrates that protected credential endpoints reject requests af
 
 ---
 
+## Video Demonstrations
+
+The repository also includes recorded demonstrations of the working application and security workflows.
+
+### Vault API Overview
+
+[**Watch Vault API Overview →**](docs/videos/vault-api-overview.mp4)
+
+Demonstrates the REST API, application workflow, and API functionality.
+
+### Vault Security Workflow
+
+[**Watch Vault Security Workflow →**](docs/videos/vault-security-workflow.mp4)
+
+Demonstrates security-focused workflows including authentication, credential protection, encrypted operations, and vault security controls.
+
+> These videos are included as project evidence and are based on actual local verification of the application.
+
+---
+
 ## Data Protection and Repository Hygiene
 
 Local vault data is intentionally excluded from version control.
@@ -803,9 +833,9 @@ Audit event retrieval            PASS
 Encrypted export                 PASS
 Encrypted import                 PASS
 Session invalidation             PASS
-Unauthorized access protection   PASS
-Automated test suite              197 passed
-Dependency consistency            PASS
+Unauthorized access protection  PASS
+Automated test suite             197 passed
+Dependency consistency           PASS
 ```
 
 ---
